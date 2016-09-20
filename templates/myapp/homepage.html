@@ -1,23 +1,26 @@
 {% extends 'myapp/base.html' %}
-
+{% load staticfiles %}
 {% block navRight %}
   <li><a href="signup/">Sign Up</a></li>
   <li><a href="login/">Log In</a></li>
 {% endblock %}
 
 {% block title %}TPO @IIT BHU Varanasi{% endblock %}
+
 {% block content %}
 <div class="jumbotron">
-  <h1>Training &amp; Placement Cell</h1>
+  <img src="{% static "images/iitbhu.png" %}">
+  <b style="font-size:50px;">Training &amp; Placement Cell</b>
   <p>The Training &amp; Placement Office, IIT (BHU) Varanasi facilitates the process of placement of students passing out from the Institute besides collaborating with leading organizations and institutes in setting up of internship and training program of students.
-</p>
+<a class="btn btn-default" href="welcome/" role="button">View details »</a></p>
+
 </div>
             <div class="col-xs-6 col-lg-4">
               <h2>Why Recruit @IIT</h2>
               <p>Admission to IIT (BHU) Varanasi takes place through the Joint Entrance Examination
                  (JEE) followed by the Indian Institutes of Technology (IITs). Students enrolling in
                   IIT (BHU) Varanasi hence constitute the Creamy Layer of the country which is reflected
-                  in various All-India Surveys in their search for centres of technical excellence.
+                  in various All-India Surveys in their search for centres of technical excellence...
               </p>
               <p><a class="btn btn-default" href="whyrecurit" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
@@ -26,21 +29,20 @@
               <p>It gives us immense pleasure to extend to you a most cordial invitation to participate
                  in the Campus Recruitment Programme of the Indian Institute of Technology (BHU), Varanasi.
                   With an increasing thrust being placed on Institute-Industry Interaction, it is my sincere
-                  belief that your esteemed organization and IIT (BHU) Varanasi stand to gain immensely from
-                  this symbiotic relationship.
+                  belief that your esteemed organization and IIT (BHU) Varanasi...
 </p>
               <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
               <h2>Placements</h2>
-              <p><li>Besides a warm welcome, we provide companies with the following aid :</li></p>
-                <li>Large classrooms &amp; halls for Pre-Placement Talks and Written Tests.</li>
+              <p>Besides a warm welcome, we provide companies with the following aid :</p>
+                <ul><li>Large classrooms &amp; halls for Pre-Placement Talks and Written Tests.</li>
                 <li>Air-conditioned rooms in the Training &amp; Placement Office for Group Discussions
                    and Interviews.</li>
                 <li>High-speed Internet connection.</li>
-                <li>Student volunteers for prompt action on the day of visit.</li>
-                <li>Arrangement for stay at IT Guest House, if intimated prior to visit, on a nominal
-                   charge fixed by the University.</li>
+                <li>Student volunteers for prompt action on the day of visit.</li></ul>
+                <!--<li>Arrangement for stay at IT Guest House, if intimated prior to visit, on a nominal
+                   charge fixed by the University.</li>-->
                    <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
 
 
@@ -52,25 +54,23 @@
                  and laboratoray sessions for five days a week. The academic session is divided in two
                   semesters with 100 working days
                  in odd semester and 80 working days in even semester. Growth of the students is
-                 constantly monitored by "Class Tests"
-                 and regular "Assignments". To continue the momentum of studies each semester has
-                 two "Mid semester test" whose marks
-                 add up and decide the overall performance of a particular student.</p>
+                 constantly monitored by "Class Tests"...</p>
               <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
               <h2>Messages</h2>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
                 commodo, tortor mauris condimentum
-                nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                magna mollis euismod. Donec sed odio dui. </p>
               <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
               <h2>Alumni Network</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-                commodo, tortor mauris condimentum
-                nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <p>With a rich heritage dating back to as far as 1919 (pioneers of
+                 engineering education in the country by being the first to start
+                  degree courses in Mining, Metallurgy, Ceramics and Pharmaceutics)
+                  that has been its preserve, it is no wonder that alumni of the...  </p>
+              <p><a class="btn btn-default" href="alumnidisc" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
 {% endblock %}
