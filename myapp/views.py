@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import connection
 # Create your views here.
+def welcome(request):
+    return render(request,'myapp/welcometotpo.html',{})
 def index(request):
     return render(request,'myapp/homepage.html',{})
 def contactus(request):
@@ -16,6 +18,10 @@ def whyrecurit(request):
     return render(request,'myapp/whyrecurit.html',{})
 def login(request):
     return render(request,'myapp/login.html',{})
+def alumnidisc(request):
+    return render(request,'myapp/alumnidiscript.html',{})
+def academics(request):
+    return render(request,'myapp/academics.html',{})
 def signedpage(request):
     #db=MySQLdb.connect("localhost","user","passwd","tpoportal")
     data=request.POST
@@ -32,7 +38,5 @@ def signedpage(request):
             return HttpResponse("success fully loged in!")
         else:
             return HttpResponse("Either username or password is incorrect")
-
-
 
     return HttpResponse("The username and password is correct")

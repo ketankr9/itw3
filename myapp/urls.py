@@ -3,7 +3,10 @@ from django.conf.urls import url,include
 from myapp import views
 
 urlpatterns=[
+url(r'welcome/$',views.welcome,name="front page detail"),
+url(r'alumnidisc/$',views.alumnidisc,name="Alumni discription"),
  url(r'signedin/$',views.signedpage,name='signedpage'),
+ url(r'academics/$',views.academics,name='Academics'),
  url(r'login/$',views.login,name="Log In page"),
  url(r'contactus/$',views.contactus,name="TPO @IIT BHU contact page"),
  url(r'discussion/$',views.discussion,name="Discussion Socket"),

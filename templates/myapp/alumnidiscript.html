@@ -1,0 +1,31 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div class="page-header">
+  <h1>IIT (BHU) Varanasi Alumni</h1>
+<!--  <p class="lead"></p> -->
+</div>
+
+<p><b>With a rich heritage</b> dating back to as far as 1919 (pioneers of engineering
+  education in the country by being the first to start degree courses in Mining,
+   Metallurgy, Ceramics and Pharmaceutics) that has been its preserve, it is no
+    wonder that alumni of the institute occupy the echelons of the corporate
+    ladder courtesy a dynamic, ever-evolving system where priority is placed
+    on improving the self and the society and where the sky is set as the limit.
+</p>
+<h3><b>Notable Alumni</b></h3>
+<ul>
+    <li>Krishan Kant, former Vice-President of India</li>
+    <li>Pulickel Ajayan, a pioneering scientist in the field of carbon nanotubes</li>
+    <li>Sandeep Pandey, a Ramon Magsaysay awardee who started the Asha for
+      Education foundation</li>
+    <li>Nikesh Arora, Senior Vice President and Chief Business Officer at Google</li>
+    <li>Ram Charan, Global Indian of the year 2010 by Economic Times</li>
+    <li>Arun Anant, CEO of The Hindu</li>
+    <li>Satyendra Dubey, a former Project Director at the National Highways
+      Authority of India who was murdered after exposing corruption in the
+      Golden Quadrilateral Project</li>
+</ul>
+      <img alt="Notable Alumni" style="width:100%;" src="{% static "images/alumni.png"%}">
+<center><b>For a list of eminent alumni Visit: <a href="http://www.iitbhuglobal.org/"> www.iitbhuglobal.org</a></b></center>
+{% endblock %}
