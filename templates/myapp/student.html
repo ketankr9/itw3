@@ -1,0 +1,75 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+            <div class="page-header">
+              <h2><font color=#000099>Batches of IIT (BHU) Varanasi</font></h2>
+
+            </div>
+
+          
+
+    <form action="" method="post" id="filter-form" onsubmit="return batchfilter()">
+				<table class="formtable part15" ><tbody>
+					<tr><td>Year</td>
+					<td><input type="text" name="year" class="required"  />
+					</td></tr>
+                    <br>
+					<tr><td>Department</td><td>
+						<table width="100%" >
+                        <tbody>
+                            <tr>
+                            <td>
+                               <label><input type="radio" name="dept" value="all" checked="checked"/> All </label><br />
+						<label><input type="radio" name="dept" value="cer" /> Ceramic  </label><br />
+						<label><input type="radio" name="dept" value="che"/> Chemical  </label><br />
+						<label><input type="radio" name="dept" value="civ" /> Civil  </label><br />
+						<label><input type="radio" name="dept" value="cse" /> Computer  </label></td>
+                        <td style="vertical-align: top;"><label><input type="radio" name="dept" value="eee" /> Electrical </label><br />
+						<label><input type="radio" name="dept" value="ece" /> Electronics </label><br />
+						<label><input type="radio" name="dept" value="mec" /> Mechanical  </label><br />
+						<label><input type="radio" name="dept" value="met" /> Metallurgical  </label></td>
+                        <td style="vertical-align: top;"><label><input type="radio" name="dept" value="min" /> Mining  </label><br />
+						<label><input type="radio" name="dept" value="phe" /> Pharmaceuticals  </label><br />
+						<label><input type="radio" name="dept" value="apc"/> Applied Chemistry</label><br />
+						<label><input type="radio" name="dept" value="apm" }/> Applied Mathematics </label></td>
+                        <td style="vertical-align: top;"><label><input type="radio" name="dept" value="app" /> Applied Physics </label><br />
+						<label><input type="radio" name="dept" value="bce" /> Bio-Chemical  </label><br />
+						<label><input type="radio" name="dept" value="bme" /> Bio-Medical  </label><br />
+						<label><input type="radio" name="dept" value="mst" /> Material Science &amp; Technology</label>
+</td>
+                            </tr>
+                        
+                            
+                        </tbody>
+                        </table>
+					</td></tr>
+                    <br>
+					<tr><td>Course</td>
+						<td><label><input type="radio" name="course" value="all" checked="checked"/> All</label>
+						<label><input type="radio" name="course" value="btech" /> B. Tech.</label>
+						<label><input type="radio" name="course" value="idd" /> IDD / IMD</label>
+						<label><input type="radio" name="course" value="mtech" /> M. Tech.</label>
+                        </td></tr>
+                    <br>
+                    <tr><td>CGPA</td>
+						<td>
+                        <label><input type="radio" name="cgpa" value="mtech" />Above 9.5</label>
+                        <label><input type="radio" name="cgpa" value="mtech" />9.0 to 9.5</label>
+                        <label><input type="radio" name="cgpa" value="all" checked="checked"/>9.0+</label>
+						<label><input type="radio" name="cgpa" value="btech" />8.0 to 9.0</label>
+						<label><input type="radio" name="cgpa" value="idd" />7.0 to 8.0</label>
+						<label><input type="radio" name="cgpa" value="mtech" />6.5 to 7.0 </label>
+                        <label><input type="radio" name="cgpa" value="mtech" />Below 6.5</label>
+						</td>
+                        
+                    </tr>
+                    <br>
+                    <br>
+					<tr><td></td><td>
+						<input name="submit" type="submit" value="Search" class="button"/>
+						<input type="reset" value="Reset" class="button"/>
+						<span class="status"></span>
+					</td></tr>
+				</tbody></table>
+			</form>
+
+{% endblock %}
