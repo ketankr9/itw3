@@ -1,0 +1,101 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<div class="page-header">
+        <h1>Contact Us</h1>
+      </div>
+    <div class="row">
+      <div class="col-xs-6 col-lg-4">
+        <h2>Contact Person</h2>
+        Dr. Anil Kumar Agarwal<br/>
+        Training & Placement Officer
+        </div><!--/.col-xs-6.col-lg-4-->
+        <div class="col-xs-6 col-lg-4">
+          <h2>Support Office Staff</h2>
+      Sri Gopalakrishnan,<br/> Sri K. Chanda & Sri A. K. Verma
+          </div><!--/.col-xs-6.col-lg-4-->
+      <div class="col-xs-6 col-lg-4">
+        <h2>Web Administrator</h2>
+        For technical support concerning TPO Portal,
+        contact Web Administrator at web.tpo@itbhu.ac.in
+      </div><!--/.col-xs-6.col-lg-4-->
+
+      <div class="col-xs-6 col-lg-4">
+        <h2>Address</h2>
+        Training & Placement Cell,<br/>
+          Indian Institute of Technology (BHU) Varanasi,<br/>
+          India - 221 005
+        </div><!--/.col-xs-6.col-lg-4-->
+      <div class="col-xs-6 col-lg-4">
+        <h2>Contacts</h2>
+        Email : tpo@itbhu.ac.in | ittpo@sify.com<br/>
+        Phone : +91-542-2307007,
+        <br/>+91-542-2368160
+        <br/>Fax : +91-542-2369162
+      </div><!--/.col-xs-6.col-lg-4-->
+</div><!--/row-->
+<hr>
+<center><h3>Or Send Us Your Query and We will respond to you</h3></center>
+<div class="jumbotron">
+<form action="" method="post">
+<div id="sp">Sign Up or Sign In</div>
+<div class="containerr">
+<label><b>First Name</b></label>
+<input type="text" placeholder="Enter First Name if you want to sign up" name="fname" required="">
+
+<label><b>Last Name</b></label>
+<input type="text" placeholder="Enter Last Name if you want to sign up" name="lname" required="">
+
+<label><b>Email</b></label>
+<input type="text" placeholder="Enter Email  if you want to sign up" name="email" required="">
+
+
+<label><b>Username*</b></label>
+<input type="text" placeholder="Enter Username, mandatory field" name="uname" required="">
+
+<label><b>Password*</b></label>
+<input type="password" placeholder="Enter Password to Sign In or Sign Up" name="psw" required="">
+
+<label><b>Password</b></label>
+<input type="password" placeholder="Re-enter your password for signup" name="psw" required="">
+
+<button type="submit">Submit</button>
+</div>
+
+</form>
+</div>
+<style>
+form {
+border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+.containerr {
+padding: 16px;
+}
+
+#sp{
+font-size: 50px;
+margin-left: 130px;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw {
+   display: block;
+   float: none;
+}
+.cancelbtn {
+   width: 100%;
+}
+}
+</style>
+
+{% endblock %}

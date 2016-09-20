@@ -1,0 +1,91 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+form {
+border: 3px solid #f1f1f1;
+}
+.bot{
+height: 62px;
+padding: 0px 0px;
+margin: 0px 0px;
+display: inline-block;
+border: 1px solid lightgreen;
+box-sizing: border-box;
+}
+.chatlog {
+border: 0px solid grey;
+width=100%;
+font-size: 18px;
+height: 420px;
+color: black;
+text-align: left;
+padding: 20px 0 0 0px;
+box-sizing: border-box;
+margin: 0px 0 0px 0px;
+
+}
+
+#sendmsg{
+  border-radius: 5px;
+  float: right;
+width:19%;
+background-color: #4CAF50;
+color: white;
+padding: 14px 20px;
+margin:auto;
+border: 1px solid grey;
+cursor: pointer;
+}
+#entermsg{
+  width:79%;
+  padding-left: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  height: 50px;
+  margin:auto;
+  border: 1px solid grey;
+
+}
+span.psw {
+float: right;
+padding-top: 16px;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw {
+   display: block;
+   float: none;
+}
+}
+</style>
+
+  <p style="font-size:18px;padding-left:10px;">DISCUSSION PAGE- Discuss anything :P</p>
+
+<form action="#">
+  <div id="chatbox" class="chatlog">
+    <ul>
+      <li>Rohan::Does anyone know why facebook didn't visit IIT BHU the last year ?</li>
+      <li>Sohan::Mughe kya maloom be.</li>
+      {% for e in msglog%}
+
+      <li>{{ e.name }}::{{ e.msg }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+    <div class="postmsg">
+      <input id="entermsg" type="text" placeholder="Type Your message here......." name="uname" required>
+      <button type="button" id="sendmsg" >Post</button>
+    </div>
+</form>
+<script>
+$(document).ready(function() {
+      $("#sendmsg").click(function(event){
+          $('chatbox').html();
+
+
+      });
+
+   });
+</script>
+
+{% endblock %}
