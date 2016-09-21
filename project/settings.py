@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'tpoportal',
-#        'USER': 'user',
-#        'PASSWORD': 'passwd',
-#        'HOST':'localhost',
-#        'PORT':'',
-#    }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tpoportal',
+        'USER': 'user',
+        'PASSWORD': 'passwd',
+        'HOST':'localhost',
+        'PORT':'',
+    }
 }
 
 
