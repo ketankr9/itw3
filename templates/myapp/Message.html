@@ -1,17 +1,17 @@
 {% extends 'myapp/base.html' %}
 {% block content %}
-            
+{% load staticfiles %}
         <div class="col-xs-12 col-sm-9">
           <div class="table-responsive">
             <table title="Message" class="table table-stripped">
               <tbody>
                 <tr class="jumbotron">
                   <td>
-                   <p style='float: left'> <img src="./ittpo.png" style="height: 250px; width: auto; align=" centre";="" "=""></p>
-                
-             
+                   <p style='float: left'> <img src="{% static "images/iittpo.png" %}" style="height: 250px; width: auto; align=" centre";="" "=""></p>
+
+
                     <p></p>
-                      
+
                       <p>
                        <div class="page-header">
               <h1>Message from Training & Placement Officer</h1>
@@ -39,7 +39,7 @@
 
                   </td>
                 </tr>
-                
+
               </tbody>
             </table>
 

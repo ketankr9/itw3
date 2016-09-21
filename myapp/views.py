@@ -4,6 +4,8 @@ from django.db import connection
 # Create your views here.
 def welcome(request):
     return render(request,'myapp/welcometotpo.html',{})
+def message(request):
+    return render(request,'myapp/Message.html',{})
 def index(request):
     return render(request,'myapp/homepage.html',{})
 def contactus(request):
@@ -18,6 +20,8 @@ def whyrecurit(request):
     return render(request,'myapp/whyrecurit.html',{})
 def login(request):
     return render(request,'myapp/login.html',{})
+def loginm(request):
+    return render(request,'myapp/Login.html',{})
 def alumnidisc(request):
     return render(request,'myapp/alumnidiscript.html',{})
 def academics(request):

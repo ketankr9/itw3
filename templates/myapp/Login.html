@@ -1,6 +1,7 @@
 {% extends 'myapp/base.html' %}
 {% block content %}
-            <style>
+{% load staticfiles %}
+<style>
 form {
     border: 3px solid #f1f1f1;
 }
@@ -57,14 +58,14 @@ span.psw {
     }
 }
 </style>
-       
-           <div class="jumbotron">
-            
+
+<div class="jumbotron">
+
 
 <form action="action_page.php">
   <div class="imgcontainer">
       <h2>Login Form</h2>
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <img src="{% static "images/img_avatar.png" %}" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
@@ -73,7 +74,7 @@ span.psw {
 
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-        
+
     <button type="submit">Login</button>
     <input type="checkbox" checked="checked"> Remember me
   </div>
@@ -85,7 +86,5 @@ span.psw {
 </form>
 
           </div>
-        
-
 
 {% endblock %}
