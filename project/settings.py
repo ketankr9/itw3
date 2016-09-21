@@ -78,7 +78,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.hello',
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+>>>>>>> 45e3bd1dff8fc51957e5da8292f4d9f125fe5005
         'NAME': 'tpoportal',
         'USER': 'user',
         'PASSWORD': 'passwd',
