@@ -1,11 +1,12 @@
 {% extends 'myapp/base.html' %}
 {% block content %}
+{% load staticfiles %}
               <div class="jumbotron">
-            
-                   <p style='float: left'> <img src="./director.png" style="height: 200px; width: auto; align=" centre";="" "=""></p>
-                
-             
-                    
+
+                   <p style='float: left'> <img src="{% static "images/director.png" %}" style="height: 200px; width: auto; align=" centre";="" "=""></p>
+
+
+
                       <p>
                        <div class="page-header">
               <h1>Message from Director</h1>
@@ -28,7 +29,7 @@
 <p>Director, IIT (BHU) Varanasi</p>
 
               </div>
-        
+
 
 
 {% endblock %}

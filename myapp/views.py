@@ -6,6 +6,10 @@ def welcome(request):
     return render(request,'myapp/welcometotpo.html',{})
 def message(request):
     return render(request,'myapp/Message.html',{})
+def messaged(request):
+    return render(request,'myapp/Message2director.html',{})
+def beyondacad(request):
+    return render(request,'myapp/beyondAcademics.html',{})
 def index(request):
     return render(request,'myapp/homepage.html',{})
 def contactus(request):
@@ -15,7 +19,7 @@ def studprofile(request):
 def discussion(request):
     return render(request,'myapp/discussion.html',{})
 def signup(request):
-    return render(request,'myapp/signup.html',{})
+    return render(request,'myapp/Signup.html',{})
 def whyrecurit(request):
     return render(request,'myapp/whyrecurit.html',{})
 def login(request):
