@@ -18,5 +18,6 @@ urlpatterns=[
  url(r'whyrecurit/$',views.whyrecurit,name="why recurit"),
  url(r'signup/$',views.signup,name="sign up"),
  url(r'studprofile/$',views.studprofile,name="student profile"),
+ url(r'past/$',views.past,name='Past Recruits'),
  url(r'^$',views.index, name='index'),
  ]
