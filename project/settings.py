@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.hello',
         'NAME': 'tpoportal',
         'USER': 'user',
         'PASSWORD': 'passwd',

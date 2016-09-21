@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testdb',
-        'USER': 'testdb',
-        'PASSWORD': 'password',
+        'NAME': 'tpoportal',
+        'USER': 'user',
+        'PASSWORD': 'passwd',
         'HOST':'localhost',
         'PORT':'',
     }
