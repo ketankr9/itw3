@@ -22,6 +22,8 @@ def alumnidisc(request):
     return render(request,'myapp/alumnidiscript.html',{})
 def academics(request):
     return render(request,'myapp/academics.html',{})
+def studentsort(request):
+    return render(request,'myapp/studentsort.html',{})
 def signedpage(request):
     #db=MySQLdb.connect("localhost","user","passwd","tpoportal")
     data=request.POST

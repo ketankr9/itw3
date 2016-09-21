@@ -4,6 +4,7 @@ from myapp import views
 
 urlpatterns=[
 url(r'welcome/$',views.welcome,name="front page detail"),
+url(r'sort/$',views.studentsort,name="sorting of stud profile bsd on param"),
 url(r'alumnidisc/$',views.alumnidisc,name="Alumni discription"),
  url(r'signedin/$',views.signedpage,name='signedpage'),
  url(r'academics/$',views.academics,name='Academics'),
