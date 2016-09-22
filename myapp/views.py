@@ -8,8 +8,6 @@ def message(request):
     return render(request,'myapp/Message.html',{})
 def messaged(request):
     return render(request,'myapp/Message2director.html',{})
-def past(request):
-    return render(request,'myapp/pastrecruits.html',{})
 def beyondacad(request):
     return render(request,'myapp/beyondAcademics.html',{})
 def index(request):
