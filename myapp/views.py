@@ -14,6 +14,8 @@ def index(request):
     return render(request,'myapp/homepage.html',{})
 def contactus(request):
     return render(request,'myapp/contactus.html',{})
+def past(request):
+    return render(request,'myapp/pastrecurits.html',{})
 def studprofile(request):
     return render(request,'myapp/studprofile.html',{})
 def discussion(request):
