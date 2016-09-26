@@ -12,8 +12,8 @@ display: inline-block;
 border: 1px solid lightgreen;
 box-sizing: border-box;
 }
-.chatlog {
-border: 0px solid grey;
+#chatbox {
+border: 1px solid grey;
 width=100%;
 font-size: 18px;
 height: 420px;
@@ -61,20 +61,19 @@ span.psw {
 
   <p style="font-size:18px;padding-left:10px;">DISCUSSION PAGE- Discuss anything</p>
 
-<form action="#">
+
   <div id="chatbox" class="chatlog">
     <ul>
-      <li>Rohan::Does anyone know why ________________ ?</li>
-      <li>Sohan::Maybe _____________.</li>
-      {% for e in msglog%}
-
-      <li>{{ e.name }}::{{ e.msg }}</li>
+      {% for e in msglog %}
+      <li>{{ e }}</li>
       {% endfor %}
     </ul>
   </div>
+  <form action="/discussion/" method="post">
+    {% csrf_token %}
     <div class="postmsg">
-      <input id="entermsg" type="text" placeholder="Type Your message here......." name="uname" required>
-      <button type="button" id="sendmsg" >Post</button>
+      <input id="entermsg" type="text" placeholder="Type Your message here......." name="msg" required>
+      <input type="submit" id="sendmsg" value="POST" name="submit">
     </div>
 </form>
 <script>

@@ -127,10 +127,9 @@ class Contactus(models.Model):
     mobile = models.CharField(max_length=20, blank=True, null=True)
     subject = models.CharField(max_length=50, blank=True, null=True)
     query = models.CharField(max_length=1000, blank=True, null=True)
-    def __unicode__(self):
-        return self.fname
+
     class Meta:
-        managed = True
+        managed = False
         db_table = 'contactus'
 
 
@@ -190,8 +189,7 @@ class DjangoSession(models.Model):
 class LoginTb(models.Model):
     username = models.CharField(primary_key=True, max_length=30)
     passwd = models.CharField(max_length=30)
-    def __unicode__(self):
-        return self.username
+
     class Meta:
         managed = False
         db_table = 'login_tb'

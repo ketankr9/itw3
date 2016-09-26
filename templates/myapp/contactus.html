@@ -37,27 +37,24 @@
 <hr>
 <center><h3>Or Send Us Your Query and We will respond to you</h3></center>
 <div class="jumbotron">
-<form action="" method="post">
-<div id="sp">Sign Up or Sign In</div>
+<form action="/submitcontactus/" method="post">{% csrf_token %}
+<div id="sp">Please Fill up this form</div>
 <div class="containerr">
-<label><b>First Name</b></label>
-<input type="text" placeholder="Enter First Name if you want to sign up" name="fname" required="">
-
-<label><b>Last Name</b></label>
-<input type="text" placeholder="Enter Last Name if you want to sign up" name="lname" required="">
+<label><b>Full Name</b></label>
+<input type="text" placeholder="Enter your full name" name="fname" required="">
 
 <label><b>Email</b></label>
-<input type="text" placeholder="Enter Email  if you want to sign up" name="email" required="">
+<input type="text" placeholder="Enter Email" name="email" required="">
 
 
-<label><b>Username*</b></label>
-<input type="text" placeholder="Enter Username, mandatory field" name="uname" required="">
+<label><b>Mobile</b></label>
+<input type="text" placeholder="Please enter your mobile number" name="mobile">
 
-<label><b>Password*</b></label>
-<input type="password" placeholder="Enter Password to Sign In or Sign Up" name="psw" required="">
+<label><b>Subject</b></label>
+<input type="text" placeholder="Enter the subject" name="subject" required="Please enter a subject with which your question relate to">
 
-<label><b>Password</b></label>
-<input type="password" placeholder="Re-enter your password for signup" name="psw" required="">
+<label><b>Enter Your Query:</b></label>
+<input type="text" placeholder="Please enter your message" name="query" required="">
 
 <button type="submit">Submit</button>
 </div>
@@ -83,8 +80,9 @@ padding: 16px;
 }
 
 #sp{
-font-size: 50px;
-margin-left: 130px;
+  margin: auto;
+  text-align: center;
+font-size: 40px;
 }
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
