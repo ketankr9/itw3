@@ -14,7 +14,7 @@ urlpatterns=[
  url(r'signedin/$',views.signedpage,name='signedpage'),
  url(r'beyondacad/$',views.beyondacad,name="Beyond Academics"),
  url(r'academics/$',views.academics,name='Academics'),
-
+ url(r'logout/$',views.logout,name="logout"),
  url(r'contactus/$',views.contactus,name="TPO @IIT BHU contact page"),
  url(r'discussion/$',views.discussion,name="Discussion Socket"),
  url(r'whyrecurit/$',views.whyrecurit,name="why recurit"),

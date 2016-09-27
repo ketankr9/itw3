@@ -14,7 +14,6 @@
 <form action="/login/" method="post">
 {% csrf_token %}
 
-
 <div class="container">
 <label><b>Username</b></label>
 <input type="text" placeholder="Enter your username" name="uname" required>
@@ -23,7 +22,7 @@
 <input type="password" placeholder="Enter your password" name="psw" required>
 <br/>
 
-<input type="checkbox" checked="checked"> Remember me
+<input type="checkbox" checked="checked" name="remme"> Remember me
 <br/>
 
 <button id="lgin" type="submit" class="btn">Log In</button>

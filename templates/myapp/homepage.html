@@ -1,11 +1,12 @@
 {% extends 'myapp/base.html' %}
 {% load staticfiles %}
 {% block navRight %}
-  <li><a href="signup/">Sign Up</a></li>
-  <li><a href="login/">Log In</a></li>
+  <li><a href="/signup/">Sign Up</a></li>
+  <li><a href="/login/">Log In</a></li>
+  <li><a href="/logout/">Log Out</a></li>
 {% endblock %}
 
-{% block title %}TPO @IIT BHU Varanasi{% endblock %}
+{% block title %}{{ value }}{% endblock %}
 
 {% block content %}
 <div class="jumbotron">

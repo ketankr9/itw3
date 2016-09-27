@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db import connection
 from django.template import context
+import datetime
 # Create your views here.
 def face(request):
     return render(request,'myapp/fblogin.html',{})
@@ -46,27 +47,52 @@ def discussion(request):
     return render(request,'myapp/discussion.html',diic)
 def signup(request):
     return render(request,'myapp/Signup.html',{})
+def logout(request):
+    response = redirect('/')
+    response.delete_cookie('cook')
+    return response
+    # response=render(request,'myapp/homepage.html',{'value':"logged out"})
+    # response.set_cookie('cook',"uncooked")
+    # return response
 def whyrecurit(request):
     return render(request,'myapp/whyrecurit.html',{})
 def login(request):
     return render(request,'myapp/Login.html',{})
+
+
 def loginu(request):
-    data=request.POST
-    #print data #debug
     dic={}
+    if 'cook' in request.COOKIES:
+        print "cook exists"
+        if request.COOKIES['cook']=="cooked":
+            print "cooked"
+            return render(request,'myapp/homepage.html',{'value':"logged in"})
+    #print request.COOKIES['cook']
     if request.method=="POST":
+        data=request.POST
+        remme=request.POST.get('remme', "off")
         cursor=connection.cursor()
         cursor.execute('''SELECT * FROM login_tb WHERE username = %s AND passwd=%s;''',(data['uname'].encode('utf-8'),data['psw'].encode('utf-8')))
         val=cursor.fetchall()
-        for i in val:
-            print i
-        if val:
-            #dic['value']="LOGGED IN";
-            return redirect(request,'/')
+        print val
+        if val: # cred is correct
+            if remme=="on":  # remember me is on
+                response=render(request,'myapp/homepage.html',dic)
+                response.set_cookie('cook', "cooked")
+                dic['value']="logged in"
+                return response
+            else:  # remember is off
+                response=render(request,'myapp/homepage.html',dic)
+                response.set_cookie('cook', "cooked")
+                dic['value']="logged in"
+                return response
         else:
             dic['value']="Incorrect";
     else:
         dic['value']="Please log in";
+
+    #response.set_cookie('cook', "cooked")
+    #return response
     return render(request,'myapp/loginUtsav.html',dic)
 def alumnidisc(request):
     return render(request,'myapp/alumnidiscript.html',{})
