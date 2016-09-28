@@ -31,15 +31,17 @@ def discussion(request):
     print ip
     if request.method=='POST':
         data=request.POST
+        name=request.COOKIES['name']
         if data['msg'] !="":
             cursor=connection.cursor()
-            cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(str(ip),data['msg'].encode("utf-8")))
+            cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
             cursor.close()
     cursor=connection.cursor()
     cursor.execute('''select * from discuss''')
+    print cursor.fetchall()
     dic=[]
     for e in cursor.fetchall():
-        dic.append(e[1].encode('utf-8')+":::"+e[2].encode('utf-8'))
+        pass#dic.append(e[1].encode('utf-8')+":::"+e[2].encode('utf-8'))
     dic.reverse()
     cursor.close()
     diic={'msglog':dic}
@@ -79,9 +81,13 @@ def loginu(request):
             if remme=="on":  # remember me is on
                 response=render(request,'myapp/homepage.html',dic)
                 response.set_cookie('cook', "cooked")
+                response.set_cookie('name',"")  # get name from db
+                response.set_cookie('branch',"") # get branch from db
+                response.set_cookie('year',"") # get year from db
+                response.set_cookie('roll',"")
                 dic['value']="logged in"
                 return response
-            else:  # remember is off
+            else:  # remember is off, set_cookie until browser is open
                 response=render(request,'myapp/homepage.html',dic)
                 response.set_cookie('cook', "cooked")
                 dic['value']="logged in"

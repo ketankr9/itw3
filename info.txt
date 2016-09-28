@@ -1,0 +1,3 @@
+#dept list
+dept=['cer','che','civ','cse','ece','eee','mec','met','min','phe','bce','bme','mst','chy','mat','phy']
+
