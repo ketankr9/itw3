@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db import connection
-from django.template import context
+from django.template import RequestContext
 import datetime
 # Create your views here.
 def face(request):
@@ -22,30 +22,64 @@ def past(request):
     return render(request,'myapp/pastrecruits.html',{})
 def studprofile(request):
     return render(request,'myapp/studprofile.html',{})
-def discussion(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    print ip
+def discussion(request,num):
+    cursor=connection.cursor()
+    if num==1:
+        que=sec+"."+branch+year
+    #cse15
+    elif num==2:
+        que=branch+year
+    #cse
+    elif num==3:
+        que=branch
+    #general
+    elif num==4:
+        que="general"
+    cursor.close()
     if request.method=='POST':
+        cursor=connection.cursor()
         data=request.POST
         name=request.COOKIES['name']
-        if data['msg'] !="":
-            cursor=connection.cursor()
+        if num==1:
+            que=sec+"."+branch+year
             cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
-            cursor.close()
+            cursor.execute("""select name,msg from discuss where grp=%s""",(que))
+            disp=cursor.fetchall()
+        #cse15
+        elif num==2:
+            que=branch+year
+            cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
+            cursor.execute("""select name,msg from discuss where grp=%s""",(que))
+            disp=cursor.fetchall()
+        #cse
+        elif num==3:
+            que=branch
+            cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
+            cursor.execute("""select name,msg from discuss where grp=%s""",(que))
+            disp=cursor.fetchall()
+        #general
+        elif num==4:
+            dic=[]
+            cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
+            cursor.execute("""select name,msg from discuss where grp=general""")
+            disp=cursor.fetchall()
+
+        cursor.close()
+
+        # if data['msg'] !="":
+        #     cursor=connection.cursor()
+        #     cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
+        #     cursor.close()
     cursor=connection.cursor()
-    cursor.execute('''select * from discuss''')
-    print cursor.fetchall()
+    cursor.execute('''select name,msg from discuss''')
     dic=[]
     for e in cursor.fetchall():
         pass#dic.append(e[1].encode('utf-8')+":::"+e[2].encode('utf-8'))
     dic.reverse()
     cursor.close()
+
     diic={'msglog':dic}
-    print dic
+    #print dic
     return render(request,'myapp/discussion.html',diic)
 def signup(request):
     return render(request,'myapp/Signup.html',{})
