@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tpoportal',
-        'USER': 'user',
-        'PASSWORD': 'passwd',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST':'localhost',
         'PORT':'',
     }

@@ -52,13 +52,15 @@
                     <br>
                     <tr><td>CGPA</td>
 						<td>
-                        <label><input type="radio" name="cgpa" value="mtech" />Above 9.5</label>
-                        <label><input type="radio" name="cgpa" value="mtech" />9.0 to 9.5</label>
-                        <label><input type="radio" name="cgpa" value="all" checked="checked"/>9.0+</label>
-						<label><input type="radio" name="cgpa" value="btech" />8.0 to 9.0</label>
-						<label><input type="radio" name="cgpa" value="idd" />7.0 to 8.0</label>
-						<label><input type="radio" name="cgpa" value="mtech" />6.5 to 7.0 </label>
-                        <label><input type="radio" name="cgpa" value="mtech" />Below 6.5</label>
+                        <label><input type="radio" name="cgpa" value="9.5" />Above 9.5</label>
+                        <label><input type="radio" name="cgpa" value="9.0" />Above 9.0</label>
+                        <label><input type="radio" name="cgpa" value="8.5" />Above 8.5</label>
+                        <label><input type="radio" name="cgpa" value="8.0" />Above 8.0</label>
+                        <label><input type="radio" name="cgpa" value="7.5" />Above 7.5</label>
+                        <label><input type="radio" name="cgpa" value="7.0" />Above 7.0</label>
+                        <label><input type="radio" name="cgpa" value="6.5" />Above 6.5</label>
+                        <label><input type="radio" name="cgpa" value="6.0" />Above 6.0</label>
+                        <label><input type="radio" name="cgpa" value="all" />All</label>
 						</td>
 
                     </tr>
@@ -71,5 +73,28 @@
 					</td></tr>
 				</tbody></table>
 			</form>
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+		  <th>Branch</th>
+		  <th>Name</th>
+		  <th>CGPA</th>
+		  <th>Email</th>
+		  <th>Interests</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for entry in data %}
+		<tr>
+			{% for column in entry %}
+			<td>{{ column }}</td>
+			{% endfor %}
+		
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
 
 {% endblock %}

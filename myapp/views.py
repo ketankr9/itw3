@@ -20,8 +20,7 @@ def contactus(request):
     return render(request,'myapp/contactus.html',{})
 def past(request):
     return render(request,'myapp/pastrecruits.html',{})
-def studprofile(request):
-    def studprofile(request, roll = None):
+def studprofile(request, roll = None):
     cursor=connection.cursor()
     
     cursor.execute("SHOW COLUMNS FROM profiles")
@@ -182,7 +181,34 @@ def alumnidisc(request):
 def academics(request):
     return render(request,'myapp/academics.html',{})
 def studentsort(request):
-    return render(request,'myapp/studentsort.html',{})
+    
+
+    cursor=connection.cursor()
+    
+    # cursor.execute("SHOW COLUMNS FROM profiles")
+
+    query = 'SELECT Branch, Name, CGPA, Email, Interests FROM profiles'
+
+    if request.method == 'POST':
+        data=request.POST
+        if data[dept] != 'all':
+            print data[dept]
+            query += ' WHERE Branch="%s"'%data[dept]
+
+        if data[course] != 'all':
+            print data[course]
+            query += ' WHERE sec="%s"'%data[course]
+        if data[cgpa] != 'all':
+            print data[cgpa]
+            query += ' WHERE CGPA>=%s'%data[cgpa]
+
+    print query
+    cursor.execute(query)
+
+    dic = dict()
+    dic["data"] = cursor.fetchall() #a list of tuples
+
+    return render(request,'myapp/studentsort.html',context = dic)
 def signedpage(request):
     #db=MySQLdb.connect("localhost","user","passwd","tpoportal")
 
