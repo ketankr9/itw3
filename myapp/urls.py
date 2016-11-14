@@ -5,7 +5,10 @@ from myapp import views
 urlpatterns=[
  url(r'fb/$',views.face,name="fb page"),
  url(r'submitcontactus/',views.submitcontactus,name="Acknowledgement form submitted"),
- url(r'login/$',views.loginu,name="log in page"),
+ url(r'OTPsignup/',views.OTPsignup,name="Signup form submitted"),
+ url(r'OTPVerification/',views.OTPVerification,name="OTP Verification"),
+ url(r'signupc/',views.signupc,name="Completing SignUp"),
+ url(r'login/(?P<w>[0-4]{0,1})/$',views.loginu,name="log in page"),
  url(r'messagedirector/$',views.messaged,name="Message of director"),
  url(r'welcome/$',views.welcome,name="front page detail"),
  url(r'sort/$',views.studentsort,name="sorting of stud profile bsd on param"),
