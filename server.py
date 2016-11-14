@@ -17,8 +17,8 @@ Content-Type: multipart/mixed; boundary=%s
 --%s
 """ % (marker, marker)
 
-host = 'localhost'       
-port = 12345     
+host = 'localhost'
+port = 12345
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, port))
 s.listen(5)
@@ -28,31 +28,31 @@ while True:
     print ('client Connected ', addr)
     flag=1
     if flag:
-        
+
         data = conn.recv(1024)
         data=data.decode("utf-8")
         data=str(data)
         try:
             print(data)
-            
-            gmail_user='smtbtest@gmail.com'
-            gmail_pwd='smtbtest@1234'
-            
+
+            gmail_user='sj380676@gmail.com'
+            gmail_pwd='9782240033'
+
             sender = 'smtbtest@gmail.com'
             reciever=data
-            
+
             OTP=randint(0,999999)
             OTP=str(OTP)
 
-            
-            
+
+
             body ="""
             Your OTP is %s
             """ %(OTP)
 
-            
+
             message = part1 + body
-            
+
             try:
                #smtpObj.ehlo()
                #smtpObj.starttls()
@@ -63,7 +63,7 @@ while True:
                #smtpObj.quit()
             except Exception:
                print "Error: unable to send email"
-               
+
             data=OTP
             print data
             data=data.encode("utf-8")
@@ -74,4 +74,3 @@ while True:
             data="Enter a proper expression"
             data=data.encode("utf-8")
             conn.sendall(data)
-

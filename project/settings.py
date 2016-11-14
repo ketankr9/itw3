@@ -107,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 #Email
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'smtbtest@gmail.com'
-EMAIL_HOST_PASSWORD = 'smtbtest@1234'
+EMAIL_HOST_USER = 'sj380676@gmail.com'
+EMAIL_HOST_PASSWORD = '9782240033'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

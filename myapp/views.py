@@ -2,7 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db import connection
 from django.template import RequestContext
+from django.core.mail import send_mail
 import datetime,socket
+import smtplib
+import base64
 # Create your views here.
 def face(request):
     return render(request,'myapp/fblogin.html',{})
@@ -125,7 +128,7 @@ def loginu(request,w):
                     dic['num']=1
                     response=render(request,'myapp/discussion.html',dic)
                 else:
-                    #dic['num']=0
+                    dic['num']=0
                     response=render(request,'myapp/homepage.html',dic)
 
                 print val2
@@ -186,15 +189,15 @@ def signedpage(request):
             return HttpResponse("Either username or password is incorrect")
 
     return HttpResponse("The username and password is correct")
-def submitcontactus(request):
-    print "submit contact us"
-    if request.method=='POST':
-        data=request.POST
-        print data['email'],data['fname'],data['mobile']
-        cursor=connection.cursor()
-        cursor.execute('''INSERT INTO contactus(fname,email,mobile,subject,query) VALUES(%s,%s,%s,%s,%s)''',(data['fname'].encode('utf-8'),data['email'].encode('utf-8'),data['mobile'].encode('utf-8'),data['subject'].encode('utf-8'),data['query'].encode('utf-8')))
-        cursor.close()
-        return HttpResponse("""<p style="font-size:50px;" >Form successfully submitted<br/>We will reach you soon :)</p>""")
+# def submitcontactus(request):
+#     print "submit contact us"
+#     if request.method=='POST':
+#         data=request.POST
+#         print data['email'],data['fname'],data['mobile']
+#         cursor=connection.cursor()
+#         cursor.execute('''INSERT INTO contactus(fname,email,mobile,subject,query) VALUES(%s,%s,%s,%s,%s)''',(data['fname'].encode('utf-8'),data['email'].encode('utf-8'),data['mobile'].encode('utf-8'),data['subject'].encode('utf-8'),data['query'].encode('utf-8')))
+#         cursor.close()
+#         return HttpResponse("""<p style="font-size:50px;" >Form successfully submitted<br/>We will reach you soon :)</p>""")
 def submitcontactus(request):
     print "submit contact us"
     if request.method=='POST':
