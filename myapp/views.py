@@ -21,7 +21,26 @@ def contactus(request):
 def past(request):
     return render(request,'myapp/pastrecruits.html',{})
 def studprofile(request):
-    return render(request,'myapp/studprofile.html',{})
+    def studprofile(request, roll = None):
+    cursor=connection.cursor()
+    
+    cursor.execute("SHOW COLUMNS FROM profiles")
+    
+    columns = cursor.fetchall()
+    columns = [x[0] for x in columns]
+    
+    cursor.execute('SELECT * FROM profiles WHERE `Roll No`="15074012"')
+    
+    details = cursor.fetchone()
+    
+    tuples = zip(columns, details)
+    dic = dict()
+    for k, v in tuples:
+        dic[k] = v
+    
+    dic['pairs'] = tuples
+
+    return render(request,'myapp/studprofile.html', context=dic)
 def discussion(request,num):
     diic={}
     num=num.encode('utf-8')
