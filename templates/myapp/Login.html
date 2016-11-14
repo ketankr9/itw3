@@ -62,9 +62,11 @@ span.psw {
 <div class="jumbotron">
 
 
-<form action="action_page.php">
+<form action="/login/{{ num }}/" method="post" >
+{% csrf_token %}
   <div class="imgcontainer">
       <h2>Login Form</h2>
+      {{ value }}
     <img src="{% static "images/img_avatar.png" %}" alt="Avatar" class="avatar">
   </div>
 
@@ -76,12 +78,12 @@ span.psw {
     <input type="password" placeholder="Enter Password" name="psw" required>
 
     <button type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
+    <input type="checkbox" checked="checked" name="remme"> Remember me
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
+    <span class="psw"><a href="#">Forgot password?</a></span>
   </div>
 </form>
 

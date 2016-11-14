@@ -1,5 +1,7 @@
 {% extends 'myapp/base.html' %}
+{% block title %}Sign Up{% endblock %}
 {% block content %}
+{% load staticfiles %}
            <style>
 form {
     border: 3px solid #f1f1f1;
@@ -62,9 +64,9 @@ span.psw {
 </style>
 
 <div class="jumbotron">
-            <form action="file:///home/ketankr9/django/itw/extras/action_page.php">
+            <form action="/OTPsignup/" method="post">{% csrf_token %}
   <div class="imgcontainer">
-  <img id="imgg" src="./img_avatar2.png" alt="Avatar" class="avatar">
+  <img src="{% static "images/img_avatar.png" %}" alt="Avatar" class="avatar">
   <div id="sp"><h2>Sign Up</h2></div>
   </div>
   <div class="containerr">
@@ -78,16 +80,8 @@ span.psw {
     <input type="text" placeholder="Enter Email" name="email" required="">
 
 
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required="">
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password " name="psw" required="">
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Re-enter your password" name="psw" required="">
-
-    <button type="submit">Sign Up</button>
+    <button type="submit">Continue</button>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

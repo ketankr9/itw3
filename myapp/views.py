@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db import connection
 from django.template import RequestContext
-import datetime
+import datetime,socket
 # Create your views here.
 def face(request):
     return render(request,'myapp/fblogin.html',{})
@@ -32,18 +32,19 @@ def discussion(request,num):
         diclog['num']=1
         diclog['value']="You must be logged in to use this feature!"
         print "redirecting to login page"
-        return render(request,'myapp/loginUtsav.html',diclog)
+        return render(request,'myapp/Login.html',diclog)
     roll=request.COOKIES['roll']
     branch=request.COOKIES['branch']
     roll=request.COOKIES['roll']
     year=str(int(request.COOKIES['year'])%100)
-    sec="btech"
+    if "sec" in request.COOKIES:
+        section=request.COOKIES['sec']
     print roll
     print type(num)
     print "DEBUG",num
     que="dfkjh"
     if num=="1":
-        que=sec+"."+branch+year
+        que=section+"."+branch+year
     #cse15
     elif num=="2":
         que=branch+year
@@ -84,6 +85,7 @@ def logout(request):
     response.delete_cookie('name')
     response.delete_cookie('year')
     response.delete_cookie('branch')
+    response.delete_cookie('sec')
     return response
 
 def whyrecurit(request):
@@ -100,14 +102,19 @@ def loginu(request,w):
             return render(request,'myapp/homepage.html',{'value':"logged in"})
     #print request.COOKIES['cook']
     if request.method=="POST":
+        print "DEBUG GOT POST"
         data=request.POST
         remme=request.POST.get('remme', "off")
         cursor=connection.cursor()
         cursor.execute('''SELECT * FROM login_tb WHERE username = %s AND passwd=%s;''',(data['uname'].encode('utf-8'),data['psw'].encode('utf-8')))
         val=cursor.fetchall()
-        cursor.execute('''SELECT Name,Branch, Year FROM profiles WHERE `Roll No`=%s;''',[data['uname'].encode('utf-8')])
+        print "DEBUG userverified",val
+        cursor.execute('''SELECT Roll_no from login_tb where username= %s''',[data['uname'].encode('utf-8')])
+        varRoll=cursor.fetchall()
+        print type(varRoll[0][0])
+        cursor.execute('''SELECT Name,Branch, Year,sec FROM profiles WHERE `Roll No`=%s;''',[varRoll[0][0]])
         val2=cursor.fetchall()
-
+        print val2
         if val: # cred is correct
             if remme=="on":
                 if w.encode('utf-8')=='1':
@@ -121,12 +128,25 @@ def loginu(request,w):
                 response.set_cookie('name',val2[0][0])  # get name from db
                 response.set_cookie('branch',val2[0][1]) # get branch from db
                 response.set_cookie('year',val2[0][2]) # get year from db
-                response.set_cookie('roll',str(data['uname'].encode('utf-8')))
+                response.set_cookie('roll',varRoll[0][0])
+                response.set_cookie('sec',val2[0][3])
+                print "DEBUG GOT POST"
                 dic['value']="logged in"
                 return response
-            else:  # remember is off, set_cookie until browser is open
-                response=render(request,'myapp/homepage.html',dic)
+            else:
+                if w.encode('utf-8')=='1':
+                    dic['num']=1
+                    response=render(request,'myapp/discussion.html',dic)
+                else:
+                    dic['num']=0
+                    response=render(request,'myapp/homepage.html',dic)
+
                 response.set_cookie('cook', "cooked")
+                response.set_cookie('name',val2[0][0])  # get name from db
+                response.set_cookie('branch',val2[0][1]) # get branch from db
+                response.set_cookie('year',val2[0][2]) # get year from db
+                response.set_cookie('roll',str(data['uname'].encode('utf-8')))
+                print "DEBUG GOT POST"
                 dic['value']="logged in"
                 return response
         else:
@@ -137,7 +157,7 @@ def loginu(request,w):
 
     #response.set_cookie('cook', "cooked")
     #return response
-    return render(request,'myapp/loginUtsav.html',dic)
+    return render(request,'myapp/Login.html',dic)
 def alumnidisc(request):
     return render(request,'myapp/alumnidiscript.html',{})
 def academics(request):
@@ -197,6 +217,9 @@ def OTPsignup(request):
 	global Name
 	Name= data['fname'] + " " + data['lname']
         print (Name)
+	global email
+	email = data['email']
+	print (email)
 	host = "localhost"
 	port = 12345
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -215,13 +238,14 @@ def OTPsignup(request):
 
         return render(request,'myapp/Signupotp.html',{})
 
-#3
 def OTPVerification(request):
     print "OTP for signup"
     if request.method=='POST':
         data=request.POST
 	global Name
 	print (Name)
+	global email
+	print (email)
         print data['otp']
 	if data['otp']==otp and flagotp==1:
 	    return render(request,'myapp/Signupcomp.html',{})
@@ -232,7 +256,7 @@ def OTPVerification(request):
 	    flagotp=0
 	    return HttpResponse("""<p style="font-size:50px;" >Incorrect OTP :( </p>""")
 
-#4
+
 def signupc(request):
     print "Complete signup"
     if request.method=='POST':
@@ -240,10 +264,13 @@ def signupc(request):
 	global Name
 	print (Name)
 	Name=str(Name)
+	global email
+	print (email)
+	email= str(email)
         print (data['rolln'], data['uname'], data['psw'], data['psw2'])
 	if data['psw']==data['psw2'] :
 	     cursor=connection.cursor()
-             cursor.execute('''INSERT INTO profiles (`Roll No`, Name, `GPA Details` ) VALUES(%s, %s, %s)''',(data['rolln'].encode("utf-8"), "10.0",Name.encode("utf-8")))
+             cursor.execute('''INSERT INTO profiles (`Roll No`, Name, `GPA Details`, Email ) VALUES(%s, %s, %s, %s)''',(data['rolln'].encode("utf-8"),Name.encode("utf-8"), "0.0",email.encode("utf-8")))
 	     cursor.execute('''INSERT INTO login_tb (Roll_No,username,passwd) VALUES(%s,%s,%s)''',(data['rolln'].encode("utf-8"), data['uname'].encode("utf-8"),data['psw'].encode("utf-8")))
 	     return render(request,'myapp/Login.html',{})
 	else:

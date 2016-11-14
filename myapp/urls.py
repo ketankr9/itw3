@@ -19,7 +19,6 @@ urlpatterns=[
  url(r'academics/$',views.academics,name='Academics'),
  url(r'logout/$',views.logout,name="logout"),
  url(r'contactus/$',views.contactus,name="TPO @IIT BHU contact page"),
- #url(r'discussion/$',views.discussion,name="Discussion Socket"),
  url(r'^discussion/(?P<num>[0-4]{1})/$',views.discussion,name="Discussion with group"),
  url(r'whyrecurit/$',views.whyrecurit,name="why recurit"),
  url(r'signup/$',views.signup,name="sign up"),
