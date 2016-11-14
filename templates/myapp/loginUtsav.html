@@ -5,14 +5,15 @@
 {% endblock %}
 {% block content %}
 <div class="page-header">
-  <center><h1>LogIn Page</h1></center>
+  <center><h1>LogIn P-age</h1></center>
   <!-- <p class="lead"></p>  -->
 </div>
 
 <div class="jumbotron" style="width:500px;margin:auto;">
-  <h4>{{value}}</h4>
-<form action="/login/{{ num }}/" method="post">
+  {{value}}
+<form action="/login/" method="post">
 {% csrf_token %}
+
 <div class="container">
 <label><b>Username</b></label>
 <input type="text" placeholder="Enter your username" name="uname" required>

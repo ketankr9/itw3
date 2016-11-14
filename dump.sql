@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.52, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
 -- Host: localhost    Database: tpoportal
 -- ------------------------------------------------------
--- Server version	5.5.52-0ubuntu0.14.04.1
+-- Server version	5.7.16-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -54,8 +54,8 @@ CREATE TABLE `auth_group_permissions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_group_permissions_group_id_0cd325b0_uniq` (`group_id`,`permission_id`),
   KEY `auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id` (`permission_id`),
-  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+  CONSTRAINT `auth_group_permissi_permission_id_84c5c92e_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,8 +173,8 @@ CREATE TABLE `auth_user_user_permissions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_user_user_permissions_user_id_14a6b632_uniq` (`user_id`,`permission_id`),
   KEY `auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id` (`permission_id`),
-  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
-  CONSTRAINT `auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+  CONSTRAINT `auth_user_user_perm_permission_id_1fbb5f2c_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -202,7 +202,7 @@ CREATE TABLE `contactus` (
   `subject` varchar(50) DEFAULT NULL,
   `query` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `contactus` (
 
 LOCK TABLES `contactus` WRITE;
 /*!40000 ALTER TABLE `contactus` DISABLE KEYS */;
-INSERT INTO `contactus` VALUES (1,'Utsav Krishnan','ketankr9@gmail.com','9151643205','incorrect student profile','The information displayed on my profile page is wrong to the best of my knowledge.'),(2,'Utsav Krishnan','ketankr9@gmail.com','9151643205','incorrect student profile','The information displayed on my profile page is wrong to the best of my knowledge.'),(3,'Utsav Krishnan','ketankr9@gmail.com','9151643205','nytnf','rtgfb trfdgb'),(4,'Monu','monu@dfjhv.com','484651451356','kjdfhvhfd vih khku hgiujg ujilg liuyfgv liu.y','iudfghi urh ugireui hgurefjkdhjgi lrwhg ulhi gh u ifh ue iure hifliderfhilewqfghiew fheu fiuhfqwe fhgewpuh iuerwhiuewshfi uerifghewqriufhgiue hqgfieah'),(5,'hhh','jkwj','8484','rtg5rt','trhrr');
+INSERT INTO `contactus` VALUES (1,'shubham','sj38066@gmail.com','9782240033','regarding incorrect gpa','the gpa displayed on my profile is wrong'),(2,'rahul','sj380666@gmail.com','9721914430','regarding incorrect gmail id','the gpa displayed on my profile is gmail id'),(3,'mayank','sj66@gmail.com','9782241033','need information','give some information related shubham '),(4,'utsav','sj6@gmail.com','978141033','need a','give somea ');
 /*!40000 ALTER TABLE `contactus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `discuss` (
   `msg` varchar(1000) DEFAULT NULL,
   `grp` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +238,7 @@ CREATE TABLE `discuss` (
 
 LOCK TABLES `discuss` WRITE;
 /*!40000 ALTER TABLE `discuss` DISABLE KEYS */;
-INSERT INTO `discuss` VALUES (1,15074014,'utsav','dfvhdfvhd','cse'),(2,15074045,'krishnan','yyyyy','idd.cse15'),(3,14568852,'monu','share your exp.','general'),(4,13655895,'rakesh','simply','btech.idd.cse15'),(5,NULL,'127.0.0.1','hi',NULL),(6,NULL,'127.0.0.1','hiiiii',NULL),(7,NULL,'','hhh',NULL);
+INSERT INTO `discuss` VALUES (6,15075048,'shubham','hello','cse15'),(7,15075012,'pritesh','hello user name pritesh','btech.cse15'),(9,15075014,'sjj','hello user name shubham jain how are u','idd.cse15'),(11,15075016,'mayank','hello user name utsav jain how are u','idd.mec15'),(13,15075043,'samant','hello user name pritesh  how are u','general'),(40,15074002,'mayank','hullo ?','idd.cse12'),(41,15074002,'mayank','anyone online?','idd.cse12'),(42,15075048,'shubham','I am.','idd.cse12');
 /*!40000 ALTER TABLE `discuss` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,8 +261,8 @@ CREATE TABLE `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin__content_type_id_c4bce8eb_fk_django_content_type_id` (`content_type_id`),
   KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
-  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
-  CONSTRAINT `django_admin__content_type_id_c4bce8eb_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+  CONSTRAINT `django_admin__content_type_id_c4bce8eb_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -412,10 +412,12 @@ DROP TABLE IF EXISTS `login_tb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `login_tb` (
-  `username` varchar(30) NOT NULL,
-  `passwd` varchar(30) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Roll_no` varchar(11) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `passwd` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -424,8 +426,53 @@ CREATE TABLE `login_tb` (
 
 LOCK TABLES `login_tb` WRITE;
 /*!40000 ALTER TABLE `login_tb` DISABLE KEYS */;
-INSERT INTO `login_tb` VALUES ('ganda','babu'),('hello','hi'),('ketankr9','ketankr9'),('root','root'),('roshan','roshni'),('username','password');
+INSERT INTO `login_tb` VALUES (1,'15075048','shubham jain','9782240033'),(2,'15074012','rahul kr','9782240321'),(3,'15074002','mayank','9382240321'),(4,'15074014','utsav','9384440321');
 /*!40000 ALTER TABLE `login_tb` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profiles`
+--
+
+DROP TABLE IF EXISTS `profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profiles` (
+  `Name` varchar(25) DEFAULT NULL,
+  `Roll No` varchar(10) NOT NULL,
+  `Branch` tinytext,
+  `sec` varchar(10) DEFAULT NULL,
+  `Year` int(11) DEFAULT NULL,
+  `Interests` tinytext,
+  `Email` tinytext,
+  `Phone` int(11) DEFAULT NULL,
+  `Address` tinytext,
+  `Phone (Resedential)` int(11) DEFAULT NULL,
+  `Address (Permanent)` tinytext,
+  `City (Permanent)` tinytext,
+  `Gender` enum('M','F') DEFAULT NULL,
+  `Date of Birth` date DEFAULT NULL,
+  `Category` tinytext,
+  `CGPA` int(11) DEFAULT NULL,
+  `GPA Details` tinytext NOT NULL,
+  `Xth %` float DEFAULT NULL,
+  `XIIth %` float DEFAULT NULL,
+  `JEE AIR` int(11) DEFAULT NULL,
+  `Father's Name` tinytext,
+  `Occupation` tinytext,
+  `Mother's Name` tinytext,
+  PRIMARY KEY (`Roll No`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profiles`
+--
+
+LOCK TABLES `profiles` WRITE;
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+INSERT INTO `profiles` VALUES ('mayank','15074002','cse','idd',2012,'mayank@gmail.com','7271007328',0,NULL,0,'VaRANASIi','Male','','0000-00-00','9.0',NULL,'68',99,213,312,'R2J','DD3','3AJ'),('rahul','15074012','cse','idd',2012,'rahul@gmail.com','7271007338',0,NULL,0,'VARANASIi','Male','','0000-00-00','10.0',NULL,'98',99,1213,312,'RJ','DD','AJ'),('utsav','15074014','cse','idd',2012,'utsav@gmail.com','9782240033',0,NULL,0,'VARANASI','M','','0000-00-00','10.0',NULL,'98',99,1213,312,'RJ','DD','AJ'),('harsh','15075018','cse','btech',2012,'rangwani@gmail.com','7014165922',0,NULL,0,'Varanasi','MaLe','','0000-00-00','9.9',1996,'68',99,213,312,'R2J','DD3','3AJ'),('shubham','15075048','cse','idd',2012,'sj38066@gmail.com','9782240033',0,NULL,0,'VARANASI','M','','0000-00-00','10.0',NULL,'98',99,1213,312,'RJ','DD','AJ'),('shubham2','1507508','cse','idd',2012,'sj38066@gmail.com','9782240033',0,NULL,0,'VARANASI','M','','0000-00-00','10.0',NULL,'98',99,1213,312,'RJ','DD','AJ');
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -437,4 +484,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-19  8:54:57
+-- Dump completed on 2016-11-14 23:35:57

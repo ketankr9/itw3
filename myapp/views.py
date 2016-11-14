@@ -2,7 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.db import connection
 from django.template import RequestContext
+from django.core.mail import send_mail
 import datetime,socket
+import smtplib
+import base64
 # Create your views here.
 def face(request):
     return render(request,'myapp/fblogin.html',{})
@@ -20,7 +23,9 @@ def contactus(request):
     return render(request,'myapp/contactus.html',{})
 def past(request):
     return render(request,'myapp/pastrecruits.html',{})
-def studprofile(request, roll = None):
+def studprofile(request, roll):
+    rollwa = roll.encode('utf-8')
+        
     cursor=connection.cursor()
     
     cursor.execute("SHOW COLUMNS FROM profiles")
@@ -28,7 +33,7 @@ def studprofile(request, roll = None):
     columns = cursor.fetchall()
     columns = [x[0] for x in columns]
     
-    cursor.execute('SELECT * FROM profiles WHERE `Roll No`="15074012"')
+    cursor.execute('SELECT * FROM profiles WHERE `Roll No`="%s"'%rollwa)
     
     details = cursor.fetchone()
     
@@ -57,10 +62,13 @@ def discussion(request,num):
     year=str(int(request.COOKIES['year'])%100)
     if "sec" in request.COOKIES:
         section=request.COOKIES['sec']
-    print roll
-    print type(num)
+    #print roll
+    #print type(num)
     print "DEBUG",num
-    que="dfkjh"
+    diic['d1']=""+section+"."+branch+year
+    diic['d2']="btech+idd "+branch+str(int(year)%100)
+    diic['d3']="all year "+branch+" students"
+    que="Please select a group first."
     if num=="1":
         que=section+"."+branch+year
     #cse15
@@ -73,26 +81,30 @@ def discussion(request,num):
     elif num=="4":
         que="general"
     disp=""
+    diic['grouptype']="Group selected:"+que
     if request.method=='POST':
-        cursor=connection.cursor()  #2
+          #2
         data=request.POST
         name=request.COOKIES['name']
-        cursor.execute('''INSERT INTO discuss (roll,name,msg,grp) VALUES(%s,%s,%s,%s)''',[roll,name,data['msg'].encode("utf-8"),que])
-        cursor.close() #2
+        if num!="0":
+            cursor=connection.cursor()
+            cursor.execute('''INSERT INTO discuss (roll,name,msg,grp) VALUES(%s,%s,%s,%s)''',[roll,name,data['msg'].encode("utf-8"),que])
+            cursor.close() #2
         # if data['msg'] !="":
         #     cursor=connection.cursor()
         #     cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
         #     cursor.close()
-    cursor=connection.cursor() #3
-    cursor.execute("""select name,msg from discuss where grp=%s""",[que])
-    disp=cursor.fetchall()
     dic=[]
-    for e in disp:
-        dic.append(e[0].encode('utf-8')+"::"+e[1].encode('utf-8'))
-    cursor.close() #3
+    if num!="0":
+        cursor=connection.cursor() #3
+        cursor.execute("""select name,msg from discuss where grp=%s""",[que])
+        disp=cursor.fetchall()
+        for e in disp:
+            dic.append(e[0].encode('utf-8')+"::"+e[1].encode('utf-8'))
+        cursor.close() #3
     diic['msglog']=dic
-    diic['varme']="varme"
     diic['num']=num
+    diic['student']="student"
     return render(request,'myapp/discussion.html',diic)
 def signup(request):
     return render(request,'myapp/Signup.html',{})
@@ -126,14 +138,16 @@ def loginu(request,w):
         cursor=connection.cursor()
         cursor.execute('''SELECT * FROM login_tb WHERE username = %s AND passwd=%s;''',(data['uname'].encode('utf-8'),data['psw'].encode('utf-8')))
         val=cursor.fetchall()
+        cursor.close()
         print "DEBUG userverified",val
-        cursor.execute('''SELECT Roll_no from login_tb where username= %s''',[data['uname'].encode('utf-8')])
-        varRoll=cursor.fetchall()
-        print type(varRoll[0][0])
-        cursor.execute('''SELECT Name,Branch, Year,sec FROM profiles WHERE `Roll No`=%s;''',[varRoll[0][0]])
-        val2=cursor.fetchall()
-        print val2
-        if val: # cred is correct
+
+        if val:
+            cursor=connection.cursor()
+            cursor.execute('''SELECT Roll_no from login_tb where username= %s''',[data['uname'].encode('utf-8')])
+            varRoll=cursor.fetchall()
+            cursor.execute('''SELECT Name,Branch, Year,sec FROM profiles WHERE `Roll No`=%s;''',[varRoll[0][0]])
+            val2=cursor.fetchall()
+            cursor.close()
             if remme=="on":
                 if w.encode('utf-8')=='1':
                     dic['num']=1
@@ -142,6 +156,7 @@ def loginu(request,w):
                     dic['num']=0
                     response=render(request,'myapp/homepage.html',dic)
 
+                print val2
                 response.set_cookie('cook', "cooked")
                 response.set_cookie('name',val2[0][0])  # get name from db
                 response.set_cookie('branch',val2[0][1]) # get branch from db
@@ -188,30 +203,44 @@ def studentsort(request):
     # cursor.execute("SHOW COLUMNS FROM profiles")
 
     query = 'SELECT Branch, Name, CGPA, Email, Interests FROM profiles'
+    rollquery = 'SELECT `Roll No` FROM profiles'
 
     if request.method == 'POST':
         data=request.POST
-        if data[dept] != 'all':
-            print data[dept]
-            query += ' WHERE Branch="%s"'%data[dept]
+        print '-----------------\n'+ str(data) +'\n-----------------\n'
+        print '-----------------\n'+ data["dept"] +'\n-----------------\n'
+        print '-----------------\n'+ str(type(data["dept"])) +'\n-----------------\n'
+        print '-----------------\n'+ str(type(data["cgpa"])) +'\n-----------------\n'
+        print '-----------------\n'+ data["cgpa"] +'\n-----------------\n'
+        if data["dept"] != 'all':
+            print data['dept']
+            query += ' WHERE Branch="%s"'%data['dept']
+            rollquery += ' WHERE Branch="%s"'%data['dept']
 
-        if data[course] != 'all':
-            print data[course]
-            query += ' WHERE sec="%s"'%data[course]
-        if data[cgpa] != 'all':
-            print data[cgpa]
-            query += ' WHERE CGPA>=%s'%data[cgpa]
+        if data['course'] != 'all':
+            print data['course']
+            query += ' WHERE sec="%s"'%data['course']
+            rollquery += ' WHERE sec="%s"'%data['course']
+        if data['cgpa'] != 'all':
+            print data['cgpa']
+            query += ' WHERE CGPA>=%s'%data['cgpa']
+            rollquery += ' WHERE CGPA>=%s'%data['cgpa']
 
     print query
     cursor.execute(query)
 
+    datas = cursor.fetchall()
+
+    print rollquery
+    cursor.execute(rollquery)
+
+    rolls = cursor.fetchall()
+
     dic = dict()
-    dic["data"] = cursor.fetchall() #a list of tuples
+    dic["data"] = zip(rolls, datas)
 
     return render(request,'myapp/studentsort.html',context = dic)
 def signedpage(request):
-    #db=MySQLdb.connect("localhost","user","passwd","tpoportal")
-
     data=request.POST
     print data['email']
     print request.POST['email']
@@ -228,15 +257,15 @@ def signedpage(request):
             return HttpResponse("Either username or password is incorrect")
 
     return HttpResponse("The username and password is correct")
-def submitcontactus(request):
-    print "submit contact us"
-    if request.method=='POST':
-        data=request.POST
-        print data['email'],data['fname'],data['mobile']
-        cursor=connection.cursor()
-        cursor.execute('''INSERT INTO contactus(fname,email,mobile,subject,query) VALUES(%s,%s,%s,%s,%s)''',(data['fname'].encode('utf-8'),data['email'].encode('utf-8'),data['mobile'].encode('utf-8'),data['subject'].encode('utf-8'),data['query'].encode('utf-8')))
-        cursor.close()
-        return HttpResponse("""<p style="font-size:50px;" >Form successfully submitted<br/>We will reach you soon :)</p>""")
+# def submitcontactus(request):
+#     print "submit contact us"
+#     if request.method=='POST':
+#         data=request.POST
+#         print data['email'],data['fname'],data['mobile']
+#         cursor=connection.cursor()
+#         cursor.execute('''INSERT INTO contactus(fname,email,mobile,subject,query) VALUES(%s,%s,%s,%s,%s)''',(data['fname'].encode('utf-8'),data['email'].encode('utf-8'),data['mobile'].encode('utf-8'),data['subject'].encode('utf-8'),data['query'].encode('utf-8')))
+#         cursor.close()
+#         return HttpResponse("""<p style="font-size:50px;" >Form successfully submitted<br/>We will reach you soon :)</p>""")
 def submitcontactus(request):
     print "submit contact us"
     if request.method=='POST':

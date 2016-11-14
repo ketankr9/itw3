@@ -107,15 +107,15 @@ span.psw {
 <div class="dropdown">
  <button onclick="myFunction()" class="dropbtn">Select Group</button>
  <div id="myDropdown" class="dropdown-content">
-   <a href="/discussion/1/">{{ d1 }}idd.cse15/btech.cse15</a>
-   <a href="/discussion/2/">{{ d2 }}all 'cse15'</a>
-   <a href="/discussion/3/">whole{{ d3 }} 'cse'</a>
+   <a href="/discussion/1/">{{ d1 }}</a>
+   <a href="/discussion/2/">{{ d2 }}</a>
+   <a href="/discussion/3/">{{ d3 }}</a>
    <a href="/discussion/4/">whole college/general</a>
    <!--<a href="#">{{ a }}idd.cse15+btech.cse16</a> -->
  </div>
-</div> Your group will be displayed here.
+</div> <b style="size:50px;">{{ grouptype }}</b>
 <!--Display whole message-->
-  <div id="chatbox" class="chatlog">
+  <div id="chatbox" class="chatlog" style="height:350px">
     <ul>
       {% for e in msglog %}
       <li>{{ e }}</li>
