@@ -45,7 +45,10 @@ def discussion(request,num):
     #print roll
     #print type(num)
     print "DEBUG",num
-    que="dfkjh"
+    diic['d1']=""+section+"."+branch+year
+    diic['d2']="btech+idd "+branch+str(int(year)%100)
+    diic['d3']="all year "+branch+" students"
+    que="Please select a group first."
     if num=="1":
         que=section+"."+branch+year
     #cse15
@@ -58,26 +61,30 @@ def discussion(request,num):
     elif num=="4":
         que="general"
     disp=""
+    diic['grouptype']="Group selected:"+que
     if request.method=='POST':
-        cursor=connection.cursor()  #2
+          #2
         data=request.POST
         name=request.COOKIES['name']
-        cursor.execute('''INSERT INTO discuss (roll,name,msg,grp) VALUES(%s,%s,%s,%s)''',[roll,name,data['msg'].encode("utf-8"),que])
-        cursor.close() #2
+        if num!="0":
+            cursor=connection.cursor()
+            cursor.execute('''INSERT INTO discuss (roll,name,msg,grp) VALUES(%s,%s,%s,%s)''',[roll,name,data['msg'].encode("utf-8"),que])
+            cursor.close() #2
         # if data['msg'] !="":
         #     cursor=connection.cursor()
         #     cursor.execute('''INSERT INTO discuss (name,msg) VALUES(%s,%s)''',(name,data['msg'].encode("utf-8")))
         #     cursor.close()
-    cursor=connection.cursor() #3
-    cursor.execute("""select name,msg from discuss where grp=%s""",[que])
-    disp=cursor.fetchall()
     dic=[]
-    for e in disp:
-        dic.append(e[0].encode('utf-8')+"::"+e[1].encode('utf-8'))
-    cursor.close() #3
+    if num!="0":
+        cursor=connection.cursor() #3
+        cursor.execute("""select name,msg from discuss where grp=%s""",[que])
+        disp=cursor.fetchall()
+        for e in disp:
+            dic.append(e[0].encode('utf-8')+"::"+e[1].encode('utf-8'))
+        cursor.close() #3
     diic['msglog']=dic
-    diic['varme']="varme"
     diic['num']=num
+    diic['student']="student"
     return render(request,'myapp/discussion.html',diic)
 def signup(request):
     return render(request,'myapp/Signup.html',{})
@@ -113,8 +120,6 @@ def loginu(request,w):
         val=cursor.fetchall()
         cursor.close()
         print "DEBUG userverified",val
-
-
 
         if val:
             cursor=connection.cursor()
