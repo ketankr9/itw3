@@ -39,8 +39,8 @@ def discussion(request,num):
     year=str(int(request.COOKIES['year'])%100)
     if "sec" in request.COOKIES:
         section=request.COOKIES['sec']
-    print roll
-    print type(num)
+    #print roll
+    #print type(num)
     print "DEBUG",num
     que="dfkjh"
     if num=="1":
@@ -108,22 +108,27 @@ def loginu(request,w):
         cursor=connection.cursor()
         cursor.execute('''SELECT * FROM login_tb WHERE username = %s AND passwd=%s;''',(data['uname'].encode('utf-8'),data['psw'].encode('utf-8')))
         val=cursor.fetchall()
+        cursor.close()
         print "DEBUG userverified",val
-        cursor.execute('''SELECT Roll_no from login_tb where username= %s''',[data['uname'].encode('utf-8')])
-        varRoll=cursor.fetchall()
-        print type(varRoll[0][0])
-        cursor.execute('''SELECT Name,Branch, Year,sec FROM profiles WHERE `Roll No`=%s;''',[varRoll[0][0]])
-        val2=cursor.fetchall()
-        print val2
-        if val: # cred is correct
+
+
+
+        if val:
+            cursor=connection.cursor()
+            cursor.execute('''SELECT Roll_no from login_tb where username= %s''',[data['uname'].encode('utf-8')])
+            varRoll=cursor.fetchall()
+            cursor.execute('''SELECT Name,Branch, Year,sec FROM profiles WHERE `Roll No`=%s;''',[varRoll[0][0]])
+            val2=cursor.fetchall()
+            cursor.close()
             if remme=="on":
                 if w.encode('utf-8')=='1':
                     dic['num']=1
                     response=render(request,'myapp/discussion.html',dic)
                 else:
-                    dic['num']=0
+                    #dic['num']=0
                     response=render(request,'myapp/homepage.html',dic)
 
+                print val2
                 response.set_cookie('cook', "cooked")
                 response.set_cookie('name',val2[0][0])  # get name from db
                 response.set_cookie('branch',val2[0][1]) # get branch from db
@@ -165,8 +170,6 @@ def academics(request):
 def studentsort(request):
     return render(request,'myapp/studentsort.html',{})
 def signedpage(request):
-    #db=MySQLdb.connect("localhost","user","passwd","tpoportal")
-
     data=request.POST
     print data['email']
     print request.POST['email']
