@@ -1,13 +1,19 @@
 {% extends 'myapp/base.html' %}
 {% load staticfiles %}
 {% block navRight %}
-  <li><a href="signup/">Sign Up</a></li>
-  <li><a href="login/">Log In</a></li>
 {% endblock %}
 
-{% block title %}TPO @IIT BHU Varanasi{% endblock %}
+{% block title %}{{ value }}{% endblock %}
 
 {% block content %}
+<style>
+div class="jumbotron" {
+    border: 3px;
+    width: 100%;
+}
+
+</style>
+
 <div class="jumbotron">
   <img src="{% static "images/iitbhu.png" %}">
   <b style="font-size:50px;">Training &amp; Placement Cell</b>
@@ -31,7 +37,7 @@
                   With an increasing thrust being placed on Institute-Industry Interaction, it is my sincere
                   belief that your esteemed organization and IIT (BHU) Varanasi...
 </p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <p><a class="btn btn-default" href="message" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
               <h2>Placements</h2>
@@ -39,13 +45,16 @@
                 <ul><li>Large classrooms &amp; halls for Pre-Placement Talks and Written Tests.</li>
                 <li>Air-conditioned rooms in the Training &amp; Placement Office for Group Discussions
                    and Interviews.</li>
-                <li>High-speed Internet connection.</li>
+                   <li>High-speed Internet connection.</li>
                 <li>Student volunteers for prompt action on the day of visit.</li></ul>
-                <!--<li>Arrangement for stay at IT Guest House, if intimated prior to visit, on a nominal
-                   charge fixed by the University.</li>-->
                    <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-
-
+              </div><!--/.col-xs-6.col-lg-4-->
+              <div class="col-xs-6 col-lg-4">
+                <h2>Messages</h2>
+                <p>Greetings from Indian Institute of Technology (BHU) Varanasi !
+                  Knowledge and continuous learning are the mainstays amongst the leading organizations today. In view of this requirement and the visions and ideals of its illustrious founder Pt. Madan Mohan Malviyaji, Indian Institute of Technology (BHU) Varanasi....
+                   </p>
+                <p><a class="btn btn-default" href="messagedirector/" role="button">View details »</a></p>
               </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
               <h2>Academics</h2>
@@ -55,22 +64,16 @@
                   semesters with 100 working days
                  in odd semester and 80 working days in even semester. Growth of the students is
                  constantly monitored by "Class Tests"...</p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+              <p><a class="btn btn-default" href="academics/" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Messages</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-                commodo, tortor mauris condimentum
-                nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
+
             <div class="col-xs-6 col-lg-4">
               <h2>Alumni Network</h2>
               <p>With a rich heritage dating back to as far as 1919 (pioneers of
                  engineering education in the country by being the first to start
                   degree courses in Mining, Metallurgy, Ceramics and Pharmaceutics)
-                  that has been its preserve, it is no wonder that alumni of the...  </p>
+                  that has been its preserve, it is no wonder that alumni of the...</p>
               <p><a class="btn btn-default" href="alumnidisc" role="button">View details »</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
+
 {% endblock %}

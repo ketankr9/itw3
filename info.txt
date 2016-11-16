@@ -1,0 +1,10 @@
+#dept list
+dept=['cer','che','civ','cse','ece','eee','mec','met','min','phe','bce','bme','mst','chy','mat','phy']
+
+# code to determine the ip of the client
+x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+if x_forwarded_for:
+    ip = x_forwarded_for.split(',')[0]
+else:
+    ip = request.META.get('REMOTE_ADDR')
+print ip

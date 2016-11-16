@@ -12,38 +12,26 @@
               <tbody>
                 <tr class="jumbotron">
                   <td>
-                    <img src=/Mia-khalifa.jpg" style="height: 200px; width: auto; align=" centre";="" "="">
+                    <img src="/static/images/img_avatar.png" style="height: 200px; width: auto; align=" centre";="" "="">
                   </td>
                   <td>
-                    <p>NAME</p>
-                      <p>CLASS, YEAR</p>
-                      <p>Computer Engineering</p>
+                    <p>{{ Name }}</p>
+                      <p>{{ sec }}, {{ Year }}</p>
+                      <p>{{ Branch }}</p>
                       <br>
-                      <p>
+                      <!-- <p>
                         <a href="file:///home/rahul/Documents/itw/link">Experiences</a>&nbsp;·&nbsp;<a href="file:///home/rahul/Documents/itw/Notes">Notes</a>&nbsp;·&nbsp;<a href="file:///home/rahul/Documents/itw/resume.pdf">Resume</a>
-                      </p>
+                      </p> -->
                   </td>
                 </tr>
+								{% for key,value in pairs %}
                 <tr>
-                  <td class="key">Roll No</td>
-                  <td class="value">------OBTAIN FROM DATABASE-------</td>
+                  <td class="key">{{ key }}</td>
+                  <td class="value">{{ value }}</td>
                 </tr>
-                <tr>
-                  <td class="key">CGPA</td>
-                  <td class="value">------OBTAIN FROM DATABASE-------</td>
-                </tr>
-                <tr>
-                  <td class="key">Interests</td>
-                  <td class="value">------OBTAIN FROM DATABASE-------</td>
-                </tr>
-                <tr>
-                  <td class="key">Languages</td>
-                  <td class="value">------OBTAIN FROM DATABASE-------</td>
-                </tr>
-                <tr>
-                  <td class="key">Father name</td>
-                  <td class="value">------OBTAIN FROM DATABASE-------</td>
-                </tr>
+                
+								{% endfor %}
+                
               </tbody>
             </table>
 

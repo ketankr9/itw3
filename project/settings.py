@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tpoportal',
-        'USER': 'user',
-        'PASSWORD': 'passwd',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST':'localhost',
         'PORT':'',
     }
@@ -105,7 +105,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+#Email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sj380676@gmail.com'
+EMAIL_HOST_PASSWORD = '9782240033'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
